@@ -24,14 +24,8 @@ $(function() { // Makes sure that your function is called once all the DOM eleme
       shakePetImage();
 
       // Visual notification after button press
-      $('.pet-notif')
-        .text("You gave your pet a treat!")
-        // UNIQUE METHOD: .fadeTo(). First parameter is the duration in ms to fade to the opacity of the second parameter.
-        // "slow" is another way to specify duration, 600ms.
-        // jquery reference: https://api.jquery.com/fadeTo/
-        .fadeTo(0, 0) // Invisible element
-        .fadeTo("slow", 1); // Fade in to fully visible over 1 second
-
+      showPetNotif("You gave your pet a treat!");
+      
       checkAndUpdatePetInfoInHtml();
     }
     
@@ -46,10 +40,7 @@ $(function() { // Makes sure that your function is called once all the DOM eleme
       shakePetImage();
 
       // Visual notification after button press
-      $('.pet-notif')
-        .text("You played with your pet!")
-        .fadeTo(0, 0) // Invisible element
-        .fadeTo("slow", 1); // Fade in to fully visible over 1 second
+      showPetNotif("You played with your pet!");
 
       checkAndUpdatePetInfoInHtml();
     }
@@ -65,10 +56,7 @@ $(function() { // Makes sure that your function is called once all the DOM eleme
       shakePetImage();
 
       // Visual notification after button press
-      $('.pet-notif')
-        .text("Your pet exercised!")
-        .fadeTo(0, 0) // Invisible element
-        .fadeTo("slow", 1); // Fade in to fully visible over 1 second
+      showPetNotif("Your pet exercised!");
 
       checkAndUpdatePetInfoInHtml();
     }
@@ -81,10 +69,7 @@ $(function() { // Makes sure that your function is called once all the DOM eleme
       shakePetImage();
 
       // Visual notification after button press
-      $('.pet-notif')
-          .text("Your pet is resting!")
-          .fadeTo(0, 0) // Invisible element
-          .fadeTo("slow", 1); // Fade in to fully visible over 1 second
+      showPetNotif("Your pet is resting!");
 
       checkAndUpdatePetInfoInHtml();
     }
@@ -99,41 +84,35 @@ $(function() { // Makes sure that your function is called once all the DOM eleme
       if (pet_info['weight'] < 0 && pet_info['energy'] < 0) {
         pet_info['weight'] = 0;
         pet_info['energy'] = 0;
-        $('.pet-notif')
-          // UNIQUE METHOD: .stop(). Stops the current animation, clears the animation queue, and completes all animations after.
-          // jquery reference: https://api.jquery.com/stop/
-          // I am using the stop() method here to cancel the animation beforehand as to not have the message appear mutliple times.
-          .stop(true, true)
-          .text("Your pet's weight cannot go below zero and is out of energy!")
-          .fadeTo(0, 0) // Invisible element
-          .fadeTo("slow", 1); // Fade in to fully visible over 1 second
+        showPetNotif("Your pet is out of energy and weight cannot go below zero!");
       }
       if (pet_info['happiness'] < 0) {
         pet_info['happiness'] = 0;
-        $('.pet-notif')
-          .stop(true, true)
-          .text("Your pet is severely unhappy. Please give them a treat!")
-          .fadeTo(0, 0) // Invisible element
-          .fadeTo("slow", 1); // Fade in to fully visible over 1 second
+        showPetNotif("Your pet is very unhappy! Please give them a treat.");
       }
       if (pet_info['weight'] < 0) {
         pet_info['weight'] = 0;
-        $('.pet-notif')
-          .stop(true, true)
-          .text("Your pet's weight cannot go below zero!")
-          .fadeTo(0, 0) // Invisible element
-          .fadeTo("slow", 1); // Fade in to fully visible over 1 second
+        showPetNotif("Your pet's weight cannot go below zero!");
       }
       //Add conditional if energy is lower than zero.
       if (pet_info['energy'] < 0) {
         pet_info['energy'] = 0;
-        $('.pet-notif')
-          .stop(true, true)
-          .text("Your pet is out of energy!")
-          .fadeTo(0, 0) // Invisible element
-          .fadeTo("slow", 1); // Fade in to fully visible over 1 second
+        showPetNotif("Your pet is out of energy!");
       }
-      //No conditional added to check if happiness is lower than zero because a pet can be very unhappy.
+
+      //New conditional to check if weight, happiness, and energy levels are capped at 100
+      if (pet_info['weight'] > 100) {
+        pet_info['weight'] = 100;
+        showPetNotif("Your pet's weight cannot exceed 100!");
+      }
+      if (pet_info['happiness'] > 100) {
+        pet_info['happiness'] = 100;
+        showPetNotif("Your pet's happiness cannot exceed 100!");
+      }
+      if (pet_info['energy'] > 100) {
+        pet_info['energy'] = 100;
+        showPetNotif("Your pet's energy cannot exceed 100!");
+      }
     }
     
     // Updates your HTML with the current values in your pet_info object
@@ -151,4 +130,19 @@ $(function() { // Makes sure that your function is called once all the DOM eleme
         .animate({ marginLeft: "+=20px" }, 100)
         .animate({ marginLeft: "-=20px" }, 100)
         .animate({ marginLeft: "+=10px" }, 100);
+    }
+
+    // Function for pet notif
+    function showPetNotif(message) {
+      $('.pet-notif')
+        // UNIQUE METHOD: .stop(). Stops the current animation, clears the animation queue, and completes all animations after.
+        // jquery reference: https://api.jquery.com/stop/
+        // I am using the stop() method here to cancel the animation beforehand as to not have the message appear mutliple times.
+        .stop(true, true)
+        .text(message)
+        // UNIQUE METHOD: .fadeTo(). First parameter is the duration in ms to fade to the opacity of the second parameter.
+        // "slow" is another way to specify duration, 600ms.
+        // jquery reference: https://api.jquery.com/fadeTo/
+        .fadeTo(0, 0) // Invisible element
+        .fadeTo("slow", 1); // Fade in to fully visible over 1 second
     }
