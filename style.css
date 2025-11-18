@@ -9,12 +9,16 @@
   }
   
   main {
-    display:block;
-    height:175px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 800px;
+    margin: auto;
   }
   
   header {
     border-bottom: 1px solid black;
+    text-align: center;
   }
   
   h1 {
@@ -44,27 +48,34 @@
     float:left;
     margin:5px;
   }
-  
+
+
   .pet-image {
     height:250px;
+    border-radius: 10px;
   }
-  
+
   .dashboard div {
     display:block;
   }
   
   .pet-image-container {
-    float:left;
-    padding:10px;
+    text-align: center;
+    width: 100%;
+    padding:20px;
   }
   
   .dashboard {
-    float:left;
-    padding:20px;
+    text-align: center;
+    padding: 20px;
+    width: 100%;
   }
   
   .button-container {
     margin-top:20px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
   }
   
   .button-container button {
@@ -72,11 +83,41 @@
       margin-right: 10px;
       text-align: center;
       display: inline-block;
-      float: left;
     font-size:15px;
-    background-color: #1e2835;
+    background-color: #0c5ac0;
     border-color: #404853;
     cursor:pointer;
     background-image: linear-gradient(to bottom,rgba(246,246,246,.1)0%,rgba(30,40,53,0)66%);
     color: #fafafa;
+  }
+
+  .button-container button:hover {
+    background-color: #2e3a4a;
+    transform: translateY(-2px);
+  }
+  .button-container button:active {
+    background-color: #161f2b;
+    transform: translateY(0);
+  }
+
+  /*//For visual notification after each button press
+  .pet-notif {
+    clear:both;
+    padding-top:10px;
+    font-weight:bold;
+    height:20px;
+    color: red;
+    font-style: bold;
+  } */
+
+  .pet-notif {
+    text-align: center;
+    margin-top: 15px;
+    padding: 10px;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    min-height: 30px;
+    font-style: bold;
+    font-weight: bold;
+    color: #333;
   }

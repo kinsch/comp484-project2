@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Your Giga Pet</title>
+    <title>Maquenzie's Giga Pet</title>
     <meta name="description" content="A cool thing made with Glitch">
     <link id="favicon" rel="icon" href="https://glitch.com/edit/favicon-app.ico" type="image/x-icon">
     <meta charset="utf-8">
@@ -13,19 +13,23 @@
   <body>
     <header>
       <h1>
-        This is your Giga Pet
+        Maquenzie Garcia's Giga Pet
       </h1>
     </header>
 
     <main>
       <section class="pet-image-container">
          <!-- Replace pet image with your own pet image -->
-        <img class="pet-image" src="https://cdn.glitch.com/3aa98e05-3216-497c-a251-210ae4713a83%2Fhound.jpg?1541715339220">
+        <img class="pet-image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHacME6YV07-ZwVLxAzDIRN0bER_u9IkR9NA&s">
       </section>
       <section class="dashboard">
         <div>Name: <strong><span class="name"></span></strong></div>
         <div>Weight: <strong><span class="weight"></span> pounds</strong></div>
-        <div>Happiness: <strong><span class="happiness"></span> tail wags (per min)</strong></div>
+        <div>Happiness: <strong><span class="happiness"></span> happiness points</strong></div>
+        <!--Adding another button to represent another activity-->
+        <div>Energy: <strong><span class="energy"></span> energy points</strong></div>
+        <!--For creation of visual notif after each button press-->
+        <div class="pet-notif"></div>
         <div class="button-container">
           <button class="treat-button">
             Treat
@@ -35,6 +39,9 @@
           </button>
           <button class="exercise-button">
             Exercise
+          </button>
+          <button class="rest-button">
+            Rest
           </button>
         </div>
       </section>
