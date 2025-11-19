@@ -27,7 +27,7 @@
   h1 {
     font-weight: bold;
     color: #000;
-    font-size: 80px;
+    font-size: 90px;
   }
   
   .bold {
@@ -53,16 +53,11 @@
     margin:5px;
   }
 
-  .pet-image {
-    height:500px;
-    border-radius: 10px;
-    position: relative;
-  }
-
   .dashboard div {
     display:block;
   }
   
+  /*-------------------PET IMAGES, PET STATS & DASHBOARD, PET CONTAINERS, ETC---------------*/
   /*Creation of container for pet image and stats to the left*/
   .pet-stats-container {
     display: flex;
@@ -77,6 +72,20 @@
 
   .pet-image-container {
     flex-shrink: 0;
+  }
+
+  .pet-image {
+    height:500px;
+    border-radius: 10px;
+    position: relative;
+  }
+
+  .pet-navigation {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    position: relative;
   }
   
   .dashboard {
@@ -94,6 +103,7 @@
     font-family: helvetica, arial, sans-serif;
   }
   
+  /*-------------------BUTTON STYLES-------------------*/
   .button-container {
     margin-top:50px;
     gap: 20px;
@@ -125,16 +135,28 @@
     transform: translateY(0);
   }
 
-  /*//For visual notification after each button press
-  .pet-notif {
-    clear:both;
-    padding-top:10px;
-    font-weight:bold;
-    height:20px;
-    color: red;
-    font-style: bold;
-  } */
+  /*------------NAVIGATION BUTTON STYLES------------*/
+  .arrow-left,
+  .arrow-right {
+  font-size: 40px;
+  color: #053f1d;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 10px;
+  }
 
+  .arrow-left:hover,
+  .arrow-right:hover {
+    color: #2e3a4a;
+    transform: scale(1.2);
+  }
+
+  .arrow-left:active,
+  .arrow-right:active {
+    transform: scale(1.0);
+  }
+
+  /*-------------------PET NOTIFICATION & HEALTH HEARTS STYLES-------------------*/
   .pet-notif {
     text-align: center;
     margin-top: 15px;

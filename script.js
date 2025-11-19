@@ -8,68 +8,114 @@ $(function() { // Makes sure that your function is called once all the DOM eleme
     $('.play-button').click(clickedPlayButton);
     $('.exercise-button').click(clickedExerciseButton);
     $('.rest-button').click(clickedRestButton);
-  
-  })
-  
-    // Add a variable "pet_info" equal to a object with the name (string), weight (number), and happiness (number) of your pet
-    var pet_info = {name:"Tigress", weight:10, happiness:50, energy:100};
+
+    // Navigation arrows when switching between pets
+    $('.arrow-left').click(prevPet);
+    $('.arrow-right').click(nextPet);
+   });
+
+    // Pet constructor function
+    function Pet(name, weight, happiness, energy, imageSrc) {
+      this.name = name;
+      this.weight = weight;
+      this.happiness = happiness;
+      this.energy = energy;
+      this.imageSrc = imageSrc;
+    }
+
+    // Create pet instances with the constructor
+    var pets = [
+      new Pet("Tigress", 10, 50, 100, "images/tiger.png"),
+      new Pet("Ellie", 90, 40, 80, "images/elephant.png"),
+      new Pet("Red", 70, 60, 90, "images/red-panda.png")
+    ];
+
+    // To tell which Pet we are currently viewing
+    var currentPetIndex = 0;
+    
+    // Get the current pet
+    function getCurrentPet() {
+      return pets[currentPetIndex];
+    }
+
+    // Function To go to previous pet
+    function prevPet() {
+      currentPetIndex--;
+      if (currentPetIndex < 0) {
+        currentPetIndex = pets.length - 1; // Wrap around to last pet
+      }
+      checkAndUpdatePetInfoInHtml();
+    }
+
+    // Function To go to next pet
+    function nextPet() {
+      currentPetIndex++;
+      if (currentPetIndex >= pets.length) {
+        currentPetIndex = 0;
+      }
+      checkAndUpdatePetInfoInHtml();
+    }
   
     function clickedTreatButton() {
+      var pet = getCurrentPet();
       // Increase pet happiness
       // Increase pet weight
-      pet_info.happiness += 5;
-      pet_info.weight += 2;
+      pet.happiness += 5;
+      pet.weight += 2;
 
       //Shake animation for pet image when treat button is clicked
       shakePetImage();
 
       // Visual notification after button press
-      showPetNotif("You gave your pet a treat!");
+      showPetNotif("You gave " + pet.name + " a treat!");
       
       checkAndUpdatePetInfoInHtml();
     }
     
     function clickedPlayButton() {
+      var pet = getCurrentPet();
       // Increase pet happiness
       // Decrease pet weight
-      pet_info.happiness += 10;
-      pet_info.weight -= 1;
-      pet_info.energy -= 5;
+      pet.happiness += 10;
+      pet.weight -= 1;
+      pet.energy -= 5;
 
       //Shake pet image
       shakePetImage();
 
       // Visual notification after button press
-      showPetNotif("You played with your pet!");
+      showPetNotif("You played with " + pet.name + "!");
 
       checkAndUpdatePetInfoInHtml();
     }
     
     function clickedExerciseButton() {
+      var pet = getCurrentPet();
       // Decrease pet happiness
       // Decrease pet weight
-      pet_info.happiness -= 5;
-      pet_info.weight -= 3;
-      pet_info.energy -= 15;
+      pet.happiness -= 5;
+      pet.weight -= 3;
+      pet.energy -= 15;
 
       // Shake pet image
       shakePetImage();
 
       // Visual notification after button press
-      showPetNotif("Your pet exercised!");
+      showPetNotif(pet.name + " exercised!");
 
       checkAndUpdatePetInfoInHtml();
     }
 
     function clickedRestButton() {
+      var pet = getCurrentPet();
       // Increase pet energy
-      pet_info.energy += 20;
+      pet.energy += 20;
 
       // shake pet image
       shakePetImage();
 
       // Visual notification after button press
-      showPetNotif("Your pet is resting!");
+      showPetNotif(pet.name + " is resting!");
 
       checkAndUpdatePetInfoInHtml();
     }
@@ -81,51 +127,59 @@ $(function() { // Makes sure that your function is called once all the DOM eleme
     
     function checkWeightAndHappinessAndEnergyBeforeUpdating() {
       // Add conditional so if weight is lower than zero.
-      if (pet_info['weight'] < 0 && pet_info['energy'] < 0) {
-        pet_info['weight'] = 0;
-        pet_info['energy'] = 0;
-        showPetNotif("Your pet is out of energy and weight cannot go below zero!");
+      var pet = getCurrentPet();
+      if (pet.weight < 0 && pet.energy < 0) {
+        pet.weight = 0;
+        pet.energy = 0;
+        showPetNotif(pet.name + " is out of energy and weight cannot go below zero!");
       }
-      if (pet_info['happiness'] < 0) {
-        pet_info['happiness'] = 0;
-        showPetNotif("Your pet is very unhappy! Please give them a treat.");
+      if (pet.happiness < 0) {
+        pet.happiness = 0;
+        showPetNotif(pet.name + " is very unhappy! Please give them a treat.");
       }
-      if (pet_info['weight'] < 0) {
-        pet_info['weight'] = 0;
-        showPetNotif("Your pet's weight cannot go below zero!");
+      if (pet.weight < 0) {
+        pet.weight = 0;
+        showPetNotif(pet.name + "'s weight cannot go below zero!");
       }
       //Add conditional if energy is lower than zero.
-      if (pet_info['energy'] < 0) {
-        pet_info['energy'] = 0;
-        showPetNotif("Your pet is out of energy!");
+      if (pet.energy < 0) {
+        pet.energy = 0;
+        showPetNotif(pet.name + " is out of energy!");
       }
 
       //New conditional to check if weight, happiness, and energy levels are capped at 100
-      if (pet_info['weight'] > 100) {
-        pet_info['weight'] = 100;
-        showPetNotif("Your pet's weight cannot exceed 100!");
+      if (pet.weight > 100) {
+        pet.weight = 100;
+        showPetNotif(pet.name + "'s weight cannot exceed 100!");
       }
-      if (pet_info['happiness'] > 100) {
-        pet_info['happiness'] = 100;
-        showPetNotif("Your pet's happiness cannot exceed 100!");
+      if (pet.happiness > 100) {
+        pet.happiness = 100;
+        showPetNotif(pet.name + "'s happiness cannot exceed 100!");
       }
-      if (pet_info['energy'] > 100) {
-        pet_info['energy'] = 100;
-        showPetNotif("Your pet's energy cannot exceed 100!");
+      if (pet.energy > 100) {
+        pet.energy = 100;
+        showPetNotif(pet.name + "'s energy cannot exceed 100!");
       }
     }
     
     // Updates your HTML with the current values in your pet_info object
+    // Also calculate a new health score and update the hearts based on current values
     function updatePetInfoInHtml() {
-      $('.name').text(pet_info['name']);
-      $('.weight').text(pet_info['weight']);
-      $('.happiness').text(pet_info['happiness']);
-      $('.energy').text(pet_info['energy']);
+      var pet = getCurrentPet();
+      $('.name').text(pet.name);
+      $('.weight').text(pet.weight);
+      $('.happiness').text(pet.happiness);
+      $('.energy').text(pet.energy);
+      $('.pet-image').attr('src', pet.imageSrc);
+
+      // Calculate and update health hearts
+      updateHealthHearts();
     }
   
     // Function to shake the pet image
     function shakePetImage() {
       $('.pet-image')
+        .stop(true, true) // Added stop() to prevent unwanted animations
         .animate({ 'top': '-40px' }, 120)
         .animate({ 'top': '5px' }, 100)
         .animate({ 'top': '-30px' }, 120)
@@ -149,10 +203,11 @@ $(function() { // Makes sure that your function is called once all the DOM eleme
         .fadeTo("slow", 1); // Fade in to fully visible over 1 second
     }
 
-    // Function for a way to calculate pet health
+    // Function for a way to calculate pet health -> Since I capped all values at 100, I can take their average like so:
     function calculatePetHealth() {
-      var healthScore = (pet_info['happiness'] + pet_info['weight'] + pet_info['energy']) / 3;
-      return Math.round(healthScore);
+      var pet = getCurrentPet();
+      var healthScore = (pet.happiness + pet.weight + pet.energy) / 3;
+      return Math.round(healthScore); // returns rounded average
     } 
 
     function updateHealthHearts() {
@@ -172,7 +227,7 @@ $(function() { // Makes sure that your function is called once all the DOM eleme
       } else if (health >= 80 && health <= 100) {
         hearts = '❤︎❤︎❤︎❤︎❤︎';  // 5 hearts
       }
-    }
 
-    //Display hearts
-    $('.health-hearts').html(hearts);
+      // Display hearts
+      $('.health-hearts').html(hearts);
+    }
