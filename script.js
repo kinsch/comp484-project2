@@ -126,10 +126,12 @@ $(function() { // Makes sure that your function is called once all the DOM eleme
     // Function to shake the pet image
     function shakePetImage() {
       $('.pet-image')
-        .animate({ marginLeft: "-=10px" }, 100)
-        .animate({ marginLeft: "+=20px" }, 100)
-        .animate({ marginLeft: "-=20px" }, 100)
-        .animate({ marginLeft: "+=10px" }, 100);
+        .animate({ 'top': '-40px' }, 120)
+        .animate({ 'top': '5px' }, 100)
+        .animate({ 'top': '-30px' }, 120)
+        .animate({ 'top': '0px' }, 100)
+        .animate({ 'top': '-15px' }, 100)
+        .animate({ 'top': '0px' }, 100);       
     }
 
     // Function for pet notif
@@ -146,3 +148,31 @@ $(function() { // Makes sure that your function is called once all the DOM eleme
         .fadeTo(0, 0) // Invisible element
         .fadeTo("slow", 1); // Fade in to fully visible over 1 second
     }
+
+    // Function for a way to calculate pet health
+    function calculatePetHealth() {
+      var healthScore = (pet_info['happiness'] + pet_info['weight'] + pet_info['energy']) / 3;
+      return Math.round(healthScore);
+    } 
+
+    function updateHealthHearts() {
+      var health = calculatePetHealth();
+      var hearts = '';
+
+      // Number of hearts to display
+      // (Hearts taken from: https://emojicombos.com/heart-symbols)
+      if (health >= 0 && health < 20) {
+        hearts = '❤︎';  // 1 heart
+      } else if (health >= 20 && health < 40) {
+        hearts = '❤︎❤︎';  // 2 hearts
+      } else if (health >= 40 && health < 60) {
+        hearts = '❤︎❤︎❤︎';  // 3 hearts
+      } else if (health >= 60 && health < 80) {
+        hearts = '❤︎❤︎❤︎❤︎';  // 4 hearts
+      } else if (health >= 80 && health <= 100) {
+        hearts = '❤︎❤︎❤︎❤︎❤︎';  // 5 hearts
+      }
+    }
+
+    //Display hearts
+    $('.health-hearts').html(hearts);
