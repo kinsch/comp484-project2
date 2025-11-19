@@ -6,6 +6,10 @@
   body {
     font-family: helvetica, arial, sans-serif;
     margin: 25px;
+    background-image: url("../images/Background_example.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
   }
   
   main {
@@ -17,8 +21,8 @@
   }
   
   header {
-    border-bottom: 1px solid black;
-    text-align: center;
+    text-align: left;
+    font-size: 13px;
   }
   
   h1 {
@@ -49,9 +53,8 @@
     margin:5px;
   }
 
-
   .pet-image {
-    height:250px;
+    height:500px;
     border-radius: 10px;
   }
 
@@ -59,20 +62,35 @@
     display:block;
   }
   
-  .pet-image-container {
-    text-align: center;
+  /*Creation of container for pet image and stats to the left*/
+  .pet-stats-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
     width: 100%;
-    padding:20px;
+    margin-bottom: 30px;
+    margin-top: 50px;
+  }
+
+  .pet-image-container {
+    flex-shrink: 0;
   }
   
   .dashboard {
-    text-align: center;
+    text-align: left;
+    background-color: white;
+    font-size: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 20px;
     width: 100%;
   }
   
   .button-container {
-    margin-top:20px;
+    margin-top:80px;
+    gap: 20px;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
@@ -83,9 +101,10 @@
       margin-right: 10px;
       text-align: center;
       display: inline-block;
-    font-size:15px;
-    background-color: #0c5ac0;
+    font-size:40px;
+    background-color: #053f1d;
     border-color: #404853;
+    border-radius: 30%;
     cursor:pointer;
     background-image: linear-gradient(to bottom,rgba(246,246,246,.1)0%,rgba(30,40,53,0)66%);
     color: #fafafa;
@@ -96,7 +115,7 @@
     transform: translateY(-2px);
   }
   .button-container button:active {
-    background-color: #161f2b;
+    background-color: #053105;
     transform: translateY(0);
   }
 
@@ -114,7 +133,8 @@
     text-align: center;
     margin-top: 15px;
     padding: 10px;
-    background-color: #f0f0f0;
+    /*background-color: #f0f0f0;*/
+    font-size: 18px;
     border-radius: 5px;
     min-height: 30px;
     font-style: bold;

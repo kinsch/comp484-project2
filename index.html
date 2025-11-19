@@ -9,6 +9,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="script.js" defer></script>
     <link rel="stylesheet" href="style.css">
+    <!--Addition of font awesome-->
+    <script src="https://kit.fontawesome.com/1ebf2720c0.js" crossorigin="anonymous"></script>
   </head>
   <body>
     <header>
@@ -18,33 +20,37 @@
     </header>
 
     <main>
-      <section class="pet-image-container">
-         <!-- Replace pet image with your own pet image -->
-        <img class="pet-image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHacME6YV07-ZwVLxAzDIRN0bER_u9IkR9NA&s">
-      </section>
-      <section class="dashboard">
-        <div>Name: <strong><span class="name"></span></strong></div>
-        <div>Weight: <strong><span class="weight"></span> pounds</strong></div>
-        <div>Happiness: <strong><span class="happiness"></span> happiness points</strong></div>
-        <!--Adding another button to represent another activity-->
-        <div>Energy: <strong><span class="energy"></span> energy points</strong></div>
-        <!--For creation of visual notif after each button press-->
-        <div class="pet-notif"></div>
-        <div class="button-container">
-          <button class="treat-button">
-            Treat
-          </button>
-          <button class="play-button">
-            Play
-          </button>
-          <button class="exercise-button">
-            Exercise
-          </button>
-          <button class="rest-button">
-            Rest
-          </button>
-        </div>
-      </section>
+      <!--Putting pet image and stats together for the format I want-->
+      <div class="pet-stats-container">
+        <section class="pet-image-container">
+          <!-- Replace pet image with your own pet image -->
+          <img class="pet-image" src="images/tiger.png" alt="Tiger">
+        </section>
+        <section class="dashboard">
+          <div>Name: <strong><span class="name"></span></strong></div>
+          <div>Weight: <strong><span class="weight"></span> pounds</strong></div>
+          <div>Happiness: <strong><span class="happiness"></span> happiness points</strong></div>
+          <!--Adding another button to represent another activity-->
+          <div>Energy: <strong><span class="energy"></span> energy points</strong></div>
+        </section>
+      </div>
+
+      <!--For creation of visual notif after each button press-->
+      <div class="pet-notif"></div>
+      <div class="button-container">
+        <button class="treat-button">
+          <i class="fa-solid fa-bowl-food"></i>
+        </button>
+        <button class="play-button">
+          <i class="fa-brands fa-yarn"></i>
+        </button>
+        <button class="exercise-button">
+          <i class="fa-solid fa-dumbbell"></i>
+        </button>
+        <button class="rest-button">
+          <i class="fa-solid fa-bed"></i>
+        </button>
+      </div>
     </main>
 
     <!-- Your web-app is https, so your scripts need to be too -->
