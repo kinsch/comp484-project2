@@ -196,12 +196,18 @@ $(function() { // Makes sure that your function is called once all the DOM eleme
     function showPetNotif(message) {
       $('.pet-notif')
         // UNIQUE METHOD: .stop(). Stops the current animation, clears the animation queue, and completes all animations after.
+        // Accepts 3 optional parameters: queue name (string), clearQueue (boolean), jumpToEnd (boolean).
+        // Clear queue: removes all queued animations for the selected elements, default is false
+        // Jump to end: completes the current animation immediately, default is false
         // jquery reference: https://api.jquery.com/stop/
         // I am using the stop() method here to cancel the animation beforehand as to not have the message appear mutliple times.
+        // We don't want multiple messages queuing up if the user clicks buttons quickly.
         .stop(true, true)
-        .text(message)
+        .text(message) // renders in the empty div in our html
         // UNIQUE METHOD: .fadeTo(). First parameter is the duration in ms to fade to the opacity of the second parameter.
         // "slow" is another way to specify duration, 600ms.
+        // 2 other optional parameters are easing and complete (callback function) - functions to call during the animation or after it completes.
+        // Different from fadeIn()/fadeOut() as those methods only fade to 0 or 1 opacity respectively- fadeTo() allows fading to any opacity value.
         // jquery reference: https://api.jquery.com/fadeTo/
         .fadeTo(0, 0) // Invisible element
         .fadeTo("slow", 1); // Fade in to fully visible over 1 second
@@ -233,5 +239,5 @@ $(function() { // Makes sure that your function is called once all the DOM eleme
       }
 
       // Display hearts
-      $('.health-hearts').html(hearts);
+      $('.health-hearts').text(hearts);
     }
