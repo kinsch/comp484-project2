@@ -30,6 +30,7 @@ $(function() { // Makes sure that your function is called once all the DOM eleme
       new Pet("Red", 70, 60, 90, "images/red-panda.png")
     ];
 
+    // ---------------To Support Multiple Pets----------------
     // To tell which Pet we are currently viewing
     var currentPetIndex = 0;
     
@@ -55,7 +56,8 @@ $(function() { // Makes sure that your function is called once all the DOM eleme
       }
       checkAndUpdatePetInfoInHtml();
     }
-  
+    
+    // ---------------Button Click Functions----------------
     function clickedTreatButton() {
       var pet = getCurrentPet();
       // Increase pet happiness
@@ -120,11 +122,13 @@ $(function() { // Makes sure that your function is called once all the DOM eleme
       checkAndUpdatePetInfoInHtml();
     }
   
+    // Checks pet info values before updating HTML
     function checkAndUpdatePetInfoInHtml() {
       checkWeightAndHappinessAndEnergyBeforeUpdating();
       updatePetInfoInHtml();
     }
     
+    // Checks pet info values before updating HTML
     function checkWeightAndHappinessAndEnergyBeforeUpdating() {
       // Add conditional so if weight is lower than zero.
       var pet = getCurrentPet();
@@ -201,7 +205,7 @@ $(function() { // Makes sure that your function is called once all the DOM eleme
         // jquery reference: https://api.jquery.com/fadeTo/
         .fadeTo(0, 0) // Invisible element
         .fadeTo("slow", 1); // Fade in to fully visible over 1 second
-    }
+    } 
 
     // Function for a way to calculate pet health -> Since I capped all values at 100, I can take their average like so:
     function calculatePetHealth() {
