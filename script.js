@@ -24,7 +24,7 @@ $(function() { // Makes sure that your function is called once all the DOM eleme
     }
 
     // Create pet instances with the constructor
-    var pets = [
+    const pets = [
       new Pet("Tigress", 10, 50, 100, "images/tiger.png"),
       new Pet("Ellie", 90, 40, 80, "images/elephant.png"),
       new Pet("Red", 70, 60, 90, "images/red-panda.png")
@@ -32,7 +32,7 @@ $(function() { // Makes sure that your function is called once all the DOM eleme
 
     // ---------------To Support Multiple Pets----------------
     // To tell which Pet we are currently viewing
-    var currentPetIndex = 0;
+    let currentPetIndex = 0;
     
     // Get the current pet
     function getCurrentPet() {
@@ -59,7 +59,7 @@ $(function() { // Makes sure that your function is called once all the DOM eleme
     
     // ---------------Button Click Functions----------------
     function clickedTreatButton() {
-      var pet = getCurrentPet();
+      const pet = getCurrentPet();
       // Increase pet happiness
       // Increase pet weight
       pet.happiness += 5;
@@ -75,7 +75,7 @@ $(function() { // Makes sure that your function is called once all the DOM eleme
     }
     
     function clickedPlayButton() {
-      var pet = getCurrentPet();
+      const pet = getCurrentPet();
       // Increase pet happiness
       // Decrease pet weight
       pet.happiness += 10;
@@ -92,7 +92,7 @@ $(function() { // Makes sure that your function is called once all the DOM eleme
     }
     
     function clickedExerciseButton() {
-      var pet = getCurrentPet();
+      const pet = getCurrentPet();
       // Decrease pet happiness
       // Decrease pet weight
       pet.happiness -= 5;
@@ -109,7 +109,7 @@ $(function() { // Makes sure that your function is called once all the DOM eleme
     }
 
     function clickedRestButton() {
-      var pet = getCurrentPet();
+      const pet = getCurrentPet();
       // Increase pet energy
       pet.energy += 20;
 
@@ -131,7 +131,7 @@ $(function() { // Makes sure that your function is called once all the DOM eleme
     // Checks pet info values before updating HTML
     function checkWeightAndHappinessAndEnergyBeforeUpdating() {
       // Add conditional so if weight is lower than zero.
-      var pet = getCurrentPet();
+      const pet = getCurrentPet();
       if (pet.weight < 0 && pet.energy < 0) {
         pet.weight = 0;
         pet.energy = 0;
@@ -169,7 +169,7 @@ $(function() { // Makes sure that your function is called once all the DOM eleme
     // Updates your HTML with the current values in your pet_info object
     // Also calculate a new health score and update the hearts based on current values
     function updatePetInfoInHtml() {
-      var pet = getCurrentPet();
+      const pet = getCurrentPet();
       $('.name').text(pet.name);
       $('.weight').text(pet.weight);
       $('.happiness').text(pet.happiness);
@@ -215,14 +215,14 @@ $(function() { // Makes sure that your function is called once all the DOM eleme
 
     // Function for a way to calculate pet health -> Since I capped all values at 100, I can take their average like so:
     function calculatePetHealth() {
-      var pet = getCurrentPet();
-      var healthScore = (pet.happiness + pet.weight + pet.energy) / 3;
+      const pet = getCurrentPet();
+      let healthScore = (pet.happiness + pet.weight + pet.energy) / 3;
       return Math.round(healthScore); // returns rounded average
     } 
 
     function updateHealthHearts() {
-      var health = calculatePetHealth();
-      var hearts = '';
+      const health = calculatePetHealth();
+      let hearts = '';
 
       // Number of hearts to display
       // (Hearts taken from: https://emojicombos.com/heart-symbols)
