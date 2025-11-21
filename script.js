@@ -210,7 +210,7 @@ $(function() { // Makes sure that your function is called once all the DOM eleme
         // Different from fadeIn()/fadeOut() as those methods only fade to 0 or 1 opacity respectively- fadeTo() allows fading to any opacity value.
         // jquery reference: https://api.jquery.com/fadeTo/
         .fadeTo(0, 0) // Invisible element
-        .fadeTo("slow", 1); // Fade in to fully visible over 1 second
+        .fadeTo("slow", 1); // Fade in to fully visible over 600 ms
     } 
 
     // Function for a way to calculate pet health -> Since I capped all values at 100, I can take their average like so:
